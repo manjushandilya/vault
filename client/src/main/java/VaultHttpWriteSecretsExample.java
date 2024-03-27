@@ -29,7 +29,7 @@ public class VaultHttpWriteSecretsExample {
         System.out.println("Request: " + json);
 
         final HttpRequest httpRequest = java.net.http.HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8200/v1/secret/data/integrationserver"))
+                .uri(URI.create("http://localhost:8200/v1/secret/data/esb"))
                 .header("X-Vault-Token", token)
                 .header("Accept", "application/json")
                 .header("Content-type", "application/json")
