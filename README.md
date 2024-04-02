@@ -11,7 +11,7 @@ This is a pilot for (a) Vault dev server (b) Vault agent - a client-side daemon 
 &nbsp;&nbsp;4> Create a policy by supplying a config file.<br>
 &nbsp;&nbsp;5> Create a role with policy created in previous step without requiring secret id and configure blocks of IP addresses which can perform the login operation.<br>
 &nbsp;&nbsp;6> Persist the RoleID to a file.<br>
-&nbsp;&nbsp;7 Write a secret to the kv store.<br>
+&nbsp;&nbsp;7> Write a secret to the kv store.<br>
 &nbsp;&nbsp;8> Start the agent by supplying a config file.<br>
 &nbsp;&nbsp;9> The agent in-turn does the following:<br>
 &nbsp;&nbsp;&nbsp;&nbsp;- Uses auto-auth and writes token to file sink.<br>
