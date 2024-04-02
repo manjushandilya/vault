@@ -1,3 +1,11 @@
-path "secret/data/integrationserver" {
-  capabilities = ["create", "read", "update", "patch", "delete", "list"]
+path "secret/data/esb" {
+	capabilities = ["create", "read", "update", "patch", "delete", "list"]
+}
+
+path "transit/encrypt/esb" {
+	capabilities = ["update"]
+}
+
+path "transit/decrypt/esb" {
+	capabilities = ["update"]
 }

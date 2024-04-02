@@ -11,8 +11,11 @@ auto_auth {
     mount_path = "auth/approle"
     config = {
       role_id_file_path = "role_id_file"
-      secret_id_file_path = "secret_id_file"
-	  remove_secret_id_file_after_reading = true
+	  # The path to the file with secret ID, if not set, only the role-id will be used.
+	  # In that case, the AppRole should have bind_secret_id set to false,
+      # otherwise Vault Agent wouldn't be able to login.
+      # secret_id_file_path = "secret_id_file"
+	  #remove_secret_id_file_after_reading = true
     }
   }
   
