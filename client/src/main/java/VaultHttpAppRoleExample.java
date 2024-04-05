@@ -1,6 +1,5 @@
 import com.google.gson.Gson;
-import model.LoginRequest;
-import model.LoginResponse;
+import model.login.response.Root;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -22,9 +21,9 @@ public class VaultHttpAppRoleExample {
         final String secretId = Files.readString(Paths.get("C:\\foo\\vault\\agent\\secret_id_file"));
         System.out.println("Secret Id: " + secretId);
 
-        final LoginRequest loginRequest = new LoginRequest(roleId, secretId);
+        final model.login.request.Root root = new model.login.request.Root(roleId, secretId);
 
-        final String json = GSON.toJson(loginRequest);
+        final String json = GSON.toJson(root);
 
         final HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(URI.create("http://localhost:8200/v1/auth/approle/login"))
@@ -44,9 +43,9 @@ public class VaultHttpAppRoleExample {
         System.out.println("Response code: " + httpResponseCode);
 
         if (httpResponseCode == 200) {
-            final LoginResponse loginResponse = GSON.fromJson(httpResponse.body(), LoginResponse.class);
+            final Root loginResponse = GSON.fromJson(httpResponse.body(), Root.class);
             System.out.println("Response: " + loginResponse);
-            System.out.println("Client token: " + loginResponse.auth().client_token());
+            //System.out.println("Client token: " + loginResponse.auth().client_token());
         }
     }
 

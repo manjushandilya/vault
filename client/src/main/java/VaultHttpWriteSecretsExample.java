@@ -1,5 +1,5 @@
 import com.google.gson.Gson;
-import model.UpsertRequest;
+import model.MapWrapper;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -23,9 +23,9 @@ public class VaultHttpWriteSecretsExample {
         data.put("username", "Administrator");
         data.put("password", "secret");
 
-        final UpsertRequest upsertRequest = new UpsertRequest(data);
+        final MapWrapper mapWrapper = new MapWrapper(data);
 
-        final String json = GSON.toJson(upsertRequest);
+        final String json = GSON.toJson(mapWrapper);
         System.out.println("Request: " + json);
 
         final HttpRequest httpRequest = java.net.http.HttpRequest.newBuilder()
