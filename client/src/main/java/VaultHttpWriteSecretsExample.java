@@ -23,12 +23,12 @@ public class VaultHttpWriteSecretsExample {
         data.put("username", "Administrator");
         data.put("password", "secret");
 
-        final MapWrapper mapWrapper = new MapWrapper(data);
+        final MapWrapper writeSecretsRequest = new MapWrapper(data);
 
-        final String json = GSON.toJson(mapWrapper);
+        final String json = GSON.toJson(writeSecretsRequest);
         System.out.println("Request: " + json);
 
-        final HttpRequest httpRequest = java.net.http.HttpRequest.newBuilder()
+        final HttpRequest request = java.net.http.HttpRequest.newBuilder()
                 .uri(URI.create("http://localhost:8200/v1/secret/data/esb"))
                 .header("X-Vault-Token", token)
                 .header("Accept", "application/json")
@@ -36,16 +36,16 @@ public class VaultHttpWriteSecretsExample {
                 .POST(HttpRequest.BodyPublishers.ofString(json))
                 .build();
 
-        final HttpClient httpClient = HttpClient.newBuilder()
+        final HttpClient client = HttpClient.newBuilder()
                 .version(HttpClient.Version.HTTP_1_1)
                 .connectTimeout(Duration.ofSeconds(20))
                 .build();
 
-        final HttpResponse<String> httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-        final int httpResponseCode = httpResponse.statusCode();
+        final HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        final int responseCode = response.statusCode();
 
-        System.out.println("Response code: " + httpResponseCode);
-        System.out.println("Response: " + httpResponse.body());
+        System.out.println("Response code: " + responseCode);
+        System.out.println("Response: " + response.body());
     }
 
 }

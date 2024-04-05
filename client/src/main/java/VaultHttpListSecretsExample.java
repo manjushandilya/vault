@@ -9,24 +9,26 @@ import java.time.Duration;
 public class VaultHttpListSecretsExample {
 
     public static void main(String[] args) throws Exception {
-        final HttpClient httpClient = HttpClient.newBuilder()
-                .version(HttpClient.Version.HTTP_1_1)
-                .connectTimeout(Duration.ofSeconds(20))
-                .build();
-
         final String token = Files.readString(Paths.get("C:\\foo\\vault\\agent\\token_file"));
-        final HttpRequest listRequest = java.net.http.HttpRequest.newBuilder()
+        System.out.println("Token: " + token);
+
+        final HttpRequest request = java.net.http.HttpRequest.newBuilder()
                 .uri(URI.create("http://localhost:8200/v1/secret/data/esb"))
                 .header("X-Vault-Token", token)
                 .header("Accept", "application/json")
                 .GET()
                 .build();
 
-        final HttpResponse<String> listResponse = httpClient.send(listRequest, HttpResponse.BodyHandlers.ofString());
-        final int listResponseCode = listResponse.statusCode();
+        final HttpClient client = HttpClient.newBuilder()
+                .version(HttpClient.Version.HTTP_1_1)
+                .connectTimeout(Duration.ofSeconds(20))
+                .build();
+
+        final HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        final int listResponseCode = response.statusCode();
 
         System.out.println("List Response code: " + listResponseCode);
-        System.out.println("List Response: " + listResponse.body());
+        System.out.println("List Response: " + response.body());
     }
 
 }

@@ -24,12 +24,12 @@ public class VaultHttpEncryptSecretsExample {
         final String plainText = Base64.getEncoder().encodeToString(originalData.getBytes());
         System.out.println("Encoded data: " + plainText);
 
-        final model.encrypt.request.Root payload = new model.encrypt.request.Root(plainText);
-        final String json = GSON.toJson(payload);
+        final model.encrypt.request.Root encryptRequest = new model.encrypt.request.Root(plainText);
+        final String json = GSON.toJson(encryptRequest);
 
         System.out.println("JSON: " + json);
 
-        final HttpRequest encryptHttpRequest = java.net.http.HttpRequest.newBuilder()
+        final HttpRequest request = java.net.http.HttpRequest.newBuilder()
                 .uri(URI.create("http://localhost:8200/v1/transit/encrypt/esb"))
                 .header("X-Vault-Token", token)
                 .header("Accept", "application/json")
@@ -37,18 +37,18 @@ public class VaultHttpEncryptSecretsExample {
                 .POST(HttpRequest.BodyPublishers.ofString(json))
                 .build();
 
-        final HttpClient httpClient = HttpClient.newBuilder()
+        final HttpClient client = HttpClient.newBuilder()
                 .version(HttpClient.Version.HTTP_1_1)
                 .connectTimeout(Duration.ofSeconds(20))
                 .build();
 
-        final HttpResponse<String> encryptHttpResponse = httpClient.send(encryptHttpRequest, HttpResponse.BodyHandlers.ofString());
-        final int httpResponseCode = encryptHttpResponse.statusCode();
+        final HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        final int responseCode = response.statusCode();
 
-        System.out.println("Response code: " + httpResponseCode);
-        final String body = encryptHttpResponse.body();
+        System.out.println("Response code: " + responseCode);
+        final String body = response.body();
         System.out.println("Response: " + body);
-        if (httpResponseCode == 200) {
+        if (responseCode == 200) {
             final model.encrypt.response.Root root = GSON.fromJson(body, model.encrypt.response.Root.class);
             final String cipherText = root.data().ciphertext();
             final Path path = Paths.get("encrypted_content");

@@ -21,31 +21,31 @@ public class VaultHttpAppRoleExample {
         final String secretId = Files.readString(Paths.get("C:\\foo\\vault\\agent\\secret_id_file"));
         System.out.println("Secret Id: " + secretId);
 
-        final model.login.request.Root root = new model.login.request.Root(roleId, secretId);
+        final model.login.request.Root loginRequest = new model.login.request.Root(roleId, secretId);
 
-        final String json = GSON.toJson(root);
+        final String json = GSON.toJson(loginRequest);
 
-        final HttpRequest httpRequest = HttpRequest.newBuilder()
+        final HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("http://localhost:8200/v1/auth/approle/login"))
                 .header("Accept", "application/json")
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(json))
                 .build();
 
-        final HttpClient httpClient = HttpClient.newBuilder()
+        final HttpClient client = HttpClient.newBuilder()
                 .version(HttpClient.Version.HTTP_1_1)
                 .connectTimeout(Duration.ofSeconds(20))
                 .build();
 
-        final HttpResponse<String> httpResponse = httpClient.send(httpRequest, BodyHandlers.ofString());
-        final int httpResponseCode = httpResponse.statusCode();
+        final HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
+        final int responseCode = response.statusCode();
 
-        System.out.println("Response code: " + httpResponseCode);
+        System.out.println("Response code: " + responseCode);
 
-        if (httpResponseCode == 200) {
-            final Root loginResponse = GSON.fromJson(httpResponse.body(), Root.class);
+        if (responseCode == 200) {
+            final Root loginResponse = GSON.fromJson(response.body(), Root.class);
             System.out.println("Response: " + loginResponse);
-            //System.out.println("Client token: " + loginResponse.auth().client_token());
+            System.out.println("Client token: " + loginResponse.auth().client_token());
         }
     }
 
