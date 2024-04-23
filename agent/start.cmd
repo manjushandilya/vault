@@ -22,10 +22,14 @@ REM Retreive role id and write it to a file
 vault read -field=role_id auth/approle/role/esbrole/role-id > role_id_file
 
 REM Uncomment the following if a separate secret id needs to be provisioned
+REM and also set bind_secret_id=true and remove secret_id_bound_cidrs
 REM vault write -field=secret_id -f auth/approle/role/esbrole/secret-id > secret_id_file
 
 REM Write a secret key-value pair
-vault kv put secret/esb foo=bar
+REM vault kv put secret/esb foo=bar
+
+REM Read a secret key-value pair
+REM vault kv get -field=foo secret/esb
 
 REM Start vault agent with config.hcl as configuration in debug mode
 vault agent -config=config.hcl -log-level=debug

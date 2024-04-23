@@ -25,9 +25,9 @@ public class VaultHttpListSecretsExample {
                 .build();
 
         final HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        final int listResponseCode = response.statusCode();
+        final int responseCode = response.statusCode();
 
-        System.out.println("List Response code: " + listResponseCode);
+        System.out.println("List Response code: " + responseCode);
         System.out.println("List Response: " + response.body());
     }
 
