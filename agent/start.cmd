@@ -1,6 +1,6 @@
 @echo off
 REM Set the remote vault server address
-set VAULT_ADDR=http://localhost:8200
+setx VAULT_ADDR http://localhost:8200
 
 REM Enable the AppRole auth method
 vault auth enable approle
@@ -26,7 +26,7 @@ REM and also set bind_secret_id=true and remove secret_id_bound_cidrs
 REM vault write -field=secret_id -f auth/approle/role/esbrole/secret-id > secret_id_file
 
 REM Write a secret key-value pair
-REM vault kv put secret/esb foo=bar
+vault kv put secret/esb foo=bar hello=world
 
 REM Read a secret key-value pair
 REM vault kv get -field=foo secret/esb
