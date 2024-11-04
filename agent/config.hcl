@@ -3,7 +3,7 @@
 pid_file = "./agent.pid"
 
 vault {
-  address = "http://localhost:8200"
+  address = "https://localhost:8200"
 }
 
 auto_auth {
