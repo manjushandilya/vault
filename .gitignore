@@ -18,3 +18,7 @@ buildNumber.properties
 
 # ignore all exe files
 **/*.exe
+/agent/token_file
+/agent/role_id_file
+/agent/agent.pid
+/server/data
