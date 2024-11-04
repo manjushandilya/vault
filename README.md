@@ -4,7 +4,7 @@ This is a pilot for (a) Vault dev/prod server (b) Vault agent - a client-side da
 <br>
 - The server/start_dev.cmd starts the server in dev mode<br>
 - The server/start_prod.cmd starts the server in dev mode<br>
-- Both modes use self-signed certificates for TLS.
+- Both modes use self-signed certificates for TLS.<br>
 <br>
 - The agent/start_dev.cmd has commands with comments to start the vault server in development mode. Data will be stored in-memory only.<br>
 <br>
