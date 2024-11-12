@@ -1,6 +1,6 @@
 @echo off
 
-title Agent - Hashicorp Vault
+title Agent (esb) - Hashicorp Vault
 
 REM Check for the status
 vault status -tls-skip-verify
