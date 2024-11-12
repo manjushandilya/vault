@@ -45,7 +45,7 @@ public class VaultHttpAppRoleExample {
         if (responseCode == 200) {
             final Root loginResponse = GSON.fromJson(response.body(), Root.class);
             System.out.println("Response: " + loginResponse);
-            System.out.println("Client token: " + loginResponse.auth().client_token());
+            //System.out.println("Client token: " + loginResponse.auth().client_token());
         }
     }
 

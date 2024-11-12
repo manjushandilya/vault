@@ -15,6 +15,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.eclipse.jgit</groupId>
+            <artifactId>org.eclipse.jgit</artifactId>
+            <version>6.5.0.202303070854-r</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework.vault/spring-vault-core -->
         <dependency>
             <groupId>org.springframework.vault</groupId>

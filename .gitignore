@@ -22,3 +22,11 @@ buildNumber.properties
 /agent/role_id_file
 /agent/agent.pid
 /server/data
+/agent/token_file_esb
+/agent/role_id_file_esb
+/agent/config_hero.hcl
+/agent/policy_hero.cnf
+/agent/start_prod_hero.cmd
+/agent/create_profile.cmd
+/agent/agent_esb.pid
+/agent/role_id_file_hero

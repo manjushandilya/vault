@@ -22,3 +22,9 @@ vault login -tls-skip-verify
 
 REM Enable the AppRole auth method
 vault auth enable -tls-skip-verify approle
+
+REM Enable the transit secrets engine 
+vault secrets enable -tls-skip-verify transit
+
+REM Enable kv2 at esb
+vault secrets enable -tls-skip-verify -version=2 -path secret kv
