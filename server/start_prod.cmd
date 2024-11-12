@@ -1,9 +1,11 @@
 @echo off
 
-TITLE Hashicorp Vault Server
+TITLE Server - Hashicorp Vault 
 
 REM Create data directory for raft storage backend to use
-mkdir data
+if not exist data (
+  mkdir data
+)
 
 REM Set the vault server address
 setx VAULT_ADDR https://localhost:8200

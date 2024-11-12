@@ -1,6 +1,6 @@
 storage "raft" {
   path    = "data"
-  node_id = "node1"
+  node_id = "vault.node"
 }
 
 listener "tcp" {
