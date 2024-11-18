@@ -2,7 +2,7 @@
 
 TITLE Hashicorp Vault Development Server
 
-REM setx SAG_IS_CONFIG_PROPERTIES %CD%\application.properties
+setx SAG_IS_CONFIG_PROPERTIES %CD%\application.properties
 
 setx VAULT_CACERT %CD%\vault-ca.pem
 
