@@ -1,0 +1,11 @@
+path "secret/data/hero" {
+	capabilities = ["create", "read", "update", "patch", "delete", "list"]
+}
+
+path "transit/encrypt/hero" {
+	capabilities = ["update"]
+}
+
+path "transit/decrypt/hero" {
+	capabilities = ["update"]
+}

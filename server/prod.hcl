@@ -6,8 +6,8 @@ storage "raft" {
 listener "tcp" {
   address       = "127.0.0.1:8200"
   tls_disable   = "false"
-  tls_cert_file = "vault-cert.pem"
-  tls_key_file  = "vault-key.pem"
+  tls_cert_file = "vault-prod-cert.pem"
+  tls_key_file  = "vault-prod-key.pem"
 }
 
 api_addr = "https://127.0.0.1:8200"
