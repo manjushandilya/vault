@@ -1,5 +1,4 @@
 import javax.net.ssl.SSLException;
-import javax.net.ssl.SSLHandshakeException;
 import java.net.ConnectException;
 import java.net.URI;
 import java.net.http.HttpClient;

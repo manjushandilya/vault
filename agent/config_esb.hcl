@@ -34,7 +34,7 @@ cache {
 }
 
 listener "tcp" {
-  address = "localhost:8002"
+  address = "localhost:8765"
   tls_disable = true
 }
 
